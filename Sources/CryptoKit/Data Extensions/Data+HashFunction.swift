@@ -13,7 +13,7 @@ public extension Data {
     /// - parameters:
     ///   - hashFunction: The hash function used for generating the digest.
     /// - returns: The digest of `self`.
-    public func digest(using hashFunction: HashFunction) -> Data {
+    func digest(using hashFunction: HashFunction) -> Data {
         return hashFunction.digest(self)
     }
 }

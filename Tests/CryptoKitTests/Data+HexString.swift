@@ -30,12 +30,12 @@ extension Data {
             // Pad with 0 if only 1 character (Data is stored by bytes)
             let pad = characterCount < 2 ? "0" : ""
             
-            let substring = hexString.substring(with: lowerBoundIndex ..< upperBoundIndex) + pad
+            let substring = hexString[lowerBoundIndex ..< upperBoundIndex] + pad
             
             // Decode byte and append to bytes
             bytes.append(UInt8(substring, radix: 16) ?? 0x00)
         } while upperBoundIndex < hexString.endIndex
         
-        self.init(bytes: bytes)
+        self.init(bytes)
     }
 }

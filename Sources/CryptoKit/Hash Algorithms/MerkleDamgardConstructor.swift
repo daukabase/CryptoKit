@@ -32,15 +32,15 @@ public protocol MerkleDamgardConstructor: HashAlgorithm {
 }
 
 public extension MerkleDamgardConstructor {
-    public static var endianess: Endianess {
+    static var endianess: Endianess {
         return .littleEndian
     }
     
-    public static var lengthPaddingSize: UInt {
+    static var lengthPaddingSize: UInt {
         return self.blockSize / 8
     }
     
-    public static func applyPadding(to message: Data) -> Data {
+    static func applyPadding(to message: Data) -> Data {
         let length = Int(self.blockSize)
         
         // Create mutable copy of message
@@ -92,13 +92,13 @@ public extension MerkleDamgardConstructor {
         return messageCopy
     }
     
-    public static func finalize(vector: [BaseUnit]) -> Data {
+    static func finalize(vector: [BaseUnit]) -> Data {
         return vector.reduce(Data()) { (current, value) -> Data in
             current + Data(from: self.endianess == .littleEndian ? value : value.bigEndian)
         }
     }
     
-    public static func digest(_ message: Data) -> Data {
+    static func digest(_ message: Data) -> Data {
         let paddedMessage = self.applyPadding(to: message)
         
         return self.finalize(vector: self.compress(paddedMessage))

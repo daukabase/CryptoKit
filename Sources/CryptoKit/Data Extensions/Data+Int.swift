@@ -12,7 +12,7 @@ extension Data {
     init<T: FixedWidthInteger>(from value: T) {
         let valuePointer = UnsafeMutablePointer<T>.allocate(capacity: 1)
         defer {
-            valuePointer.deallocate(capacity: 1)
+            valuePointer.deallocate()
         }
         
         valuePointer.pointee = value

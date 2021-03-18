@@ -19,15 +19,15 @@ public protocol SHA2Variant: MerkleDamgardConstructor {
 }
 
 public extension SHA2Variant {
-    public static var endianess: Endianess {
+    static var endianess: Endianess {
         return .bigEndian
     }
     
-    public static var rounds: UInt {
+    static var rounds: UInt {
         return UInt(self.kConstants.count)
     }
     
-    public static func compress(_ data: Data) -> [BaseUnit] {
+    static func compress(_ data: Data) -> [BaseUnit] {
         // Constants
         let k = self.kConstants
         var h = self.initializationVector

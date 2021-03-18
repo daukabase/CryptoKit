@@ -11,7 +11,7 @@ infix operator <<< : BitwiseShiftPrecedence
 infix operator >>> : BitwiseShiftPrecedence
 
 public extension FixedWidthInteger {
-    public static func <<<(lhs: Self, rhs: Self) -> Self {
+    static func <<<(lhs: Self, rhs: Self) -> Self {
         guard rhs != Self(0) else {
             return lhs
         }
@@ -21,7 +21,7 @@ public extension FixedWidthInteger {
         return (lhs << rhs) | (lhs >> (numberOfBits - rhs))
     }
     
-    public static func >>>(lhs: Self, rhs: Self) -> Self {
+    static func >>>(lhs: Self, rhs: Self) -> Self {
         guard rhs != Self(0) else {
             return lhs
         }
